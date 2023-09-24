@@ -40,6 +40,7 @@ class Bot:
             config.bot.allowed_usernames
             and update.effective_user.username not in config.bot.allowed_usernames
         ):
+            logger.warning(f"{update.effective_user.username} tried to use the bot")
             await update.inline_query.answer(
                 [
                     InlineQueryResultArticle(
