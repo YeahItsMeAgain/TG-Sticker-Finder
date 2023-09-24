@@ -1,0 +1,8 @@
+{
+    "bot": {
+        "token": "BOT_TOKEN",
+        "allowed_usernames": [
+            "ALLOWED_USERNAMES"
+        ]
+    }
+}
