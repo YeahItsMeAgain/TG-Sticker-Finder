@@ -8,7 +8,7 @@ from stickers.sticker_pack import StickerPack
 class Tlgrm(Provider):
     @staticmethod
     def _is_valid_url(url) -> bool:
-        return requests.get(url, headers=Tlgrm.headers()).status_code == 200
+        return requests.get(url, headers=Tlgrm.headers(), timeout=10).status_code == 200
 
     @staticmethod
     def _get_sticker_pack_image_url(sticker_pack_id: str) -> str:
@@ -33,6 +33,7 @@ class Tlgrm(Provider):
             requests.get(
                 f"https://typesense.tlgrm.app/collections/stickers/documents/search?q={quote_plus(sticker_pack_name)}&query_by=tokenized_name,tags&per_page=10&page=1&query_by_weights=120,50&sort_by=_text_match:desc,installs:desc,external:desc&filter_by=lang:[na,en,he]&highlight_fields=_&min_len_1typo=5&min_len_2typo=8",
                 headers=Tlgrm.headers(),
+                timeout=10,
             )
             .json()
             .get("hits")
