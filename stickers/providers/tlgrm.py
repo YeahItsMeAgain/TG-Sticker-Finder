@@ -33,7 +33,7 @@ class Tlgrm(Provider):
             requests.get(
                 f"https://typesense.tlgrm.app/collections/stickers/documents/search?q={quote_plus(sticker_pack_name)}&query_by=tokenized_name,tags&per_page=10&page=1&query_by_weights=120,50&sort_by=_text_match:desc,installs:desc,external:desc&filter_by=lang:[na,en,he]&highlight_fields=_&min_len_1typo=5&min_len_2typo=8",
                 headers=Tlgrm.headers(),
-                timeout=10,
+                timeout=5,
             )
             .json()
             .get("hits")

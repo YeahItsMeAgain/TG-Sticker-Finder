@@ -13,7 +13,7 @@ class Combot(Provider):
         html = requests.get(
             f"https://combot.org/telegram/stickers?q={quote_plus(sticker_pack_name)}",
             headers=Combot.headers(),
-            timeout=10
+            timeout=5
         )
         soup = BeautifulSoup(html.content, "html.parser")
         sticker_pack_list = soup.find(class_="sticker-packs-list")

@@ -2,6 +2,7 @@ from uuid import uuid4
 
 from loguru import logger
 from telegram import InlineQueryResultArticle, InputTextMessageContent, Update
+import telegram
 from telegram.ext import Application, CommandHandler, InlineQueryHandler, filters
 
 from config import config
@@ -69,4 +70,7 @@ class Bot:
             f"{update.effective_user.username} is searching for {query}, received {len(results)} results"
         )
 
-        await update.inline_query.answer(results)
+        try:
+            await update.inline_query.answer(results)
+        except telegram.error.BadRequest as err:
+            logger.error(f"Error sending inline query response: {err}") 
